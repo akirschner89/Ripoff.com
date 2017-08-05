@@ -20,12 +20,19 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [1]
       }
+    },
+      imageName: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
     }
   });
 
   Listing.associate = function(models) {
-    // We're saying that a Listing should belong to an Author
-    // A Listing can't be created without an Author due to the foreign key constraint
+    // We're saying that a Listing should belong to a User
+    // A Listing can't be created without a User due to the foreign key constraint
     Listing.belongsTo(models.User, {
       foreignKey: {
         allowNull: false

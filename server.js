@@ -17,8 +17,8 @@ var PORT = process.env.PORT || 8080;
 var db = require("./models");
 
 
-// Sets up the Express app to handle data parsing
-app.use(express.static("public"));
+// Static directory
+// app.use(express.static("public"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,22 +26,20 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(methodOverride("_method"));
 
-// Static directory
-// app.use(express.static("public"));
-
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// Routes
-// =============================================================
-var routes = require("./routes/handlebars-routes.js")(app);
-app.use("/", routes);
 
 require("./routes/user-api-routes.js")(app);
 require("./routes/listing-api-routes.js")(app);
+
+// Routes
+// =============================================================
+var routes = require("./controller/handlebars-router.js");
+app.use("/", routes);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================

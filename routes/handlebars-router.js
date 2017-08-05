@@ -1,20 +1,20 @@
 var express = require("express");
 var router = express.Router();
-var db = require("../models/");
+var db = require("../models");
 
 
 router.get("/", function(req, res) {
-  db.listing.findAll({})
+  db.Listing.findAll({})
     .then(function(data) {
-      var hbsObject = {listing: data}
-      res.render("index", listing);
+      var hbsObject = {Listing: data}
+      res.render("index", hbsObject);
     });
 });
 
 
 
 router.post("/", function(req, res) {
-  db.listing.create({
+  db.Listing.create({
       title: req.body.name,
     })
     .then(function() {
@@ -22,42 +22,43 @@ router.post("/", function(req, res) {
     });
 });
 
-//for updating listing info - to revisit
+// for updating Listing info - to revisit
 // router.put("/:id", function(req, res) {
-//   db.listing.update({
-//     devoured: true
+//   db.Listing.update({
+//     body: req.body.info
 //       }, {
 //         where: {
 //           id: req.params.id
-//         },
-
+//         }
 //       }).then(function() {
 //       res.redirect("/");
 //     });
 // });
 
-router.get("/", function(req, res) {
-  db.user.findAll({})
-    .then(function(data) {
-      var hbsObject = {user: data}
-      res.render("index", user);
-    });
-});
+module.exports = router;
+
+// router.get("/", function(req, res) {
+//   db.user.findAll({})
+//     .then(function(data) {
+//       var hbsObject = {user: data}
+//       res.redirect("index", hbdObject);
+//     });
+// });
 
 
 
-router.post("/", function(req, res) {
-  db.user.create({
-      name: req.body.name,
-    })
-    .then(function() {
-      res.redirect("/");
-    });
-});
+// router.post("/", function(req, res) {
+//   db.user.create({
+//       name: req.body.name,
+//     })
+//     .then(function() {
+//       res.redirect("/");
+//     });
+// });
 
 //for updating user info - to revisit
 // router.put("/:id", function(req, res) {
-//   db.listing.update({
+//   db.Listing.update({
 //     devoured: true
 //       }, {
 //         where: {
@@ -70,4 +71,4 @@ router.post("/", function(req, res) {
 // });
 
 
-module.exports = router;
+// module.exports = router;

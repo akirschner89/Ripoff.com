@@ -38,7 +38,7 @@ module.exports = function(app) {
   });
 
   // Listing route for saving a new Listing
-  app.Listing("/api/listing", function(req, res) {
+  app.post("/api/listing", function(req, res) {
     db.Listing.create(req.body).then(function(dbListing) {
       res.json(dbListing);
     });
