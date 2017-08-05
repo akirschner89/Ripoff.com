@@ -1,29 +1,73 @@
-var path = require("path");
+var express = require("express");
+var router = express.Router();
+var db = require("../models/");
 
-// Routes
-// =============================================================
-module.exports = function(app) {
 
-  // Each of the below routes just handles the HTML page that the user gets sent to.
+router.get("/", function(req, res) {
+  db.listing.findAll({})
+    .then(function(data) {
+      var hbsObject = {listing: data}
+      res.render("index", listing);
+    });
+});
 
-  // index route loads view.html
-  app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/board.html"));
-  });
 
-  // cms route loads cms.html
-  app.get("/cms", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/cms.html"));
-  });
 
-  // board route loads board.html
-  app.get("/board", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/board.html"));
-  });
+router.post("/", function(req, res) {
+  db.listing.create({
+      title: req.body.name,
+    })
+    .then(function() {
+      res.redirect("/");
+    });
+});
 
-  // authors route loads author-manager.html
-  app.get("/user", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/user-manager.html"));
-  });
+//for updating listing info - to revisit
+// router.put("/:id", function(req, res) {
+//   db.listing.update({
+//     devoured: true
+//       }, {
+//         where: {
+//           id: req.params.id
+//         },
 
-};
+//       }).then(function() {
+//       res.redirect("/");
+//     });
+// });
+
+router.get("/", function(req, res) {
+  db.user.findAll({})
+    .then(function(data) {
+      var hbsObject = {user: data}
+      res.render("index", user);
+    });
+});
+
+
+
+router.post("/", function(req, res) {
+  db.user.create({
+      name: req.body.name,
+    })
+    .then(function() {
+      res.redirect("/");
+    });
+});
+
+//for updating user info - to revisit
+// router.put("/:id", function(req, res) {
+//   db.listing.update({
+//     devoured: true
+//       }, {
+//         where: {
+//           id: req.params.id
+//         },
+
+//       }).then(function() {
+//       res.redirect("/");
+//     });
+// });
+
+
+module.exports = router;
