@@ -15,3 +15,8 @@
   margin: 0 auto;
   margin-top:150px;
 }
+
+style.css 
+	add .dropzone .dz-preview .dz-error-message {
+    top: 150px!important;
+}

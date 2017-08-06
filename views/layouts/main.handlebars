@@ -18,9 +18,10 @@
       $('#dropzoneButton').remove();
       $("#dropzoneID").addClass("dropzone").dropzone({ 
         url: "/upload", 
-        maxFilesize: 2, 
+        maxFilesize: 6, 
         maxFiles: 10,
         capture: "camera",
+         addRemoveLinks: true,
         dictDefaultMessage: "DROP FILES TO BE UPLOADED HERE"
       });
     });
