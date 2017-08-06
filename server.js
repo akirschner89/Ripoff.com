@@ -33,8 +33,12 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 
+app.use(express.static("public"));
+app.use('/images', express.static(__dirname + '/imageUploads'));
+
 require("./routes/user-api-routes.js")(app);
 require("./routes/listing-api-routes.js")(app);
+require("./routes/upload-route.js")(app);
 
 // Routes
 // =============================================================

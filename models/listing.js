@@ -2,21 +2,21 @@ module.exports = function(sequelize, DataTypes) {
   var Listing = sequelize.define("Listing", {
     title: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
         len: [1]
       }
     },
     body: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,
       validate: {
         len: [1]
       }
     },
     category: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,
       validate: {
         len: [1]
       }
@@ -35,7 +35,7 @@ module.exports = function(sequelize, DataTypes) {
     // A Listing can't be created without a User due to the foreign key constraint
     Listing.belongsTo(models.User, {
       foreignKey: {
-        allowNull: false
+        allowNull: true
       }
     });
   };

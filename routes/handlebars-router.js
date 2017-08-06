@@ -13,14 +13,14 @@ router.get("/", function(req, res) {
 
 
 
-router.post("/", function(req, res) {
-  db.Listing.create({
-      title: req.body.name,
-    })
-    .then(function() {
-      res.redirect("/");
-    });
-});
+// router.post("/", function(req, res) {
+//   db.Listing.create({
+//       title: req.body.name,
+//     })
+//     .then(function() {
+//       res.redirect("/");
+//     });
+// });
 
 // for updating Listing info - to revisit
 // router.put("/:id", function(req, res) {
