@@ -1,7 +1,4 @@
-// *****************************************************************************
-// Server.js - This file is the initial starting point for the Node/Express server.
-//
-// ******************************************************************************
+// *************************************************************
 // *** Dependencies
 // =============================================================
 var express = require("express");
@@ -17,9 +14,6 @@ var PORT = process.env.PORT || 8080;
 var db = require("./models");
 
 
-// Static directory
-// app.use(express.static("public"));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
@@ -32,18 +26,47 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-
+// Static directory
 app.use(express.static("public"));
 app.use('/images', express.static(__dirname + '/imageUploads'));
 
+//testing section for passport-local
+var passport = require('passport') , LocalStrategy = require('passport-local').Strategy;
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+
+// POST method for user authentication
+app.post('/login',
+  passport.authenticate('local', { successRedirect: '/',
+                                   failureRedirect: '/login',
+                                   failureFlash: true })
+);
+
+
+
+// Routing
 require("./routes/user-api-routes.js")(app);
 require("./routes/listing-api-routes.js")(app);
 require("./routes/upload-route.js")(app);
 
-// Routes
+// Routes <> Handlebars
 // =============================================================
 var routes = require("./controller/handlebars-router.js");
 app.use("/", routes);
+
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================

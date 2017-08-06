@@ -1,4 +1,22 @@
 var db = require("../models");
+//testing section for passport-local
+var passport = require('passport') , LocalStrategy = require('passport-local').Strategy;
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+
 
 module.exports = function(app) {
   app.get("/api/user", function(req, res) {
@@ -31,6 +49,13 @@ module.exports = function(app) {
       res.json(dbUser);
     });
   });
+
+  // POST method for user authentication
+app.post('/login',
+  passport.authenticate('local', { successRedirect: '/',
+                                   failureRedirect: '/login',
+                                   failureFlash: true })
+);
 
   app.delete("/api/user/:id", function(req, res) {
     db.User.destroy({

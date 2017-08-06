@@ -7,8 +7,24 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [1]
       }
+    },
+      username: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      validate: {
+        len: [1]
+        }
+      },
+      password:  {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        len: [1]
+      }
     }
-  });
+
+    });
+
 
   User.associate = function(db) {
     // Associating User with Listing
@@ -19,4 +35,4 @@ module.exports = function(sequelize, DataTypes) {
   };
 
   return User;
-};
+}
