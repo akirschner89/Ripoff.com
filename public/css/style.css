@@ -1,21 +1,44 @@
-@font-face{
-  font-family: 'GatsbyFLF-Bold';
-  src: url(../fonts/GatsbyFLF-Bold.ttf);
+@font-face {
+    font-family: 'GatsbyFLF-Bold';
+    src: url(../fonts/GatsbyFLF-Bold.ttf);
 }
 
 .dz-message {
-  font-family: 'GatsbyFLF-Bold';
-  font-size: 30px;
-  letter-spacing: 3px;
-  text-indent: 1.5px;
+    font-family: 'GatsbyFLF-Bold';
+    font-size: 30px;
+    letter-spacing: 3px;
+    text-indent: 1.5px;
 }
 
 #dropzoneButton {
-  display: block;
-  margin: 0 auto;
-  margin-top:150px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 150px;
 }
 
 .dropzone .dz-preview .dz-error-message {
     top: 150px!important;
+}
+
+
+/* Remove the navbar's default rounded borders and increase the bottom margin */
+
+.navbar {
+    margin-bottom: 50px;
+    border-radius: 0;
+}
+
+
+/* Remove the jumbotron's default bottom margin */
+
+.jumbotron {
+    margin-bottom: 0;
+}
+
+
+/* Add a gray background color and some padding to the footer */
+
+footer {
+    background-color: #f2f2f2;
+    padding: 25px;
 }
