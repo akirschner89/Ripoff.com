@@ -11,8 +11,9 @@ module.exports = function(sequelize, DataTypes) {
 
   Images.associate = function(db) {
     Images.belongsTo(db.Listing, {
-      foreignKey: {
-        allowNull: true
+      foreignKey: { 
+        name: 'listId',
+        allowNull:false
       }
     });
   };
