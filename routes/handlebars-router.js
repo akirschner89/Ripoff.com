@@ -4,12 +4,22 @@ var db = require("../models");
 
 
 router.get("/", function(req, res) {
-  db.Listing.findAll({})
-    .then(function(data) {
-      var hbsObject = {Listing: data}
-      res.render("index", hbsObject);
-    });
+    db.Listing.findAll({})
+        .then(function(data) {
+            var hbsObject = { Listing: data }
+            res.render("index", hbsObject);
+        });
 });
+
+router.get("/login", function(req, res) {
+    res.render("login.handlebars");
+})
+
+router.get("/sell", function(req, res) {
+    res.render("sell.handlebars");
+})
+
+
 
 
 

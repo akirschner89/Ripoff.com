@@ -31,28 +31,31 @@ app.use(express.static("public"));
 app.use('/images', express.static(__dirname + '/imageUploads'));
 
 //testing section for passport-local
-var passport = require('passport') , LocalStrategy = require('passport-local').Strategy;
+var passport = require('passport'),
+    LocalStrategy = require('passport-local').Strategy;
 
 passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function(err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
-  }
+    function(username, password, done) {
+        User.findOne({ username: username }, function(err, user) {
+            if (err) { return done(err); }
+            if (!user) {
+                return done(null, false, { message: 'Incorrect username.' });
+            }
+            if (!user.validPassword(password)) {
+                return done(null, false, { message: 'Incorrect password.' });
+            }
+            return done(null, user);
+        });
+    }
 ));
 
 // POST method for user authentication
 app.post('/login',
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login',
-                                   failureFlash: true })
+    passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/login',
+        failureFlash: true
+    })
 );
 
 
@@ -64,14 +67,14 @@ require("./routes/upload-route.js")(app);
 
 // Routes <> Handlebars
 // =============================================================
-var routes = require("./controller/handlebars-router.js");
+var routes = require("./routes/handlebars-router.js");
 app.use("/", routes);
 
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 db.sequelize.sync({ force: true }).then(function() {
-  app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
-  });
+    app.listen(PORT, function() {
+        console.log("App listening on PORT " + PORT);
+    });
 });
