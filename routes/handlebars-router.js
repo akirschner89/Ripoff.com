@@ -3,23 +3,28 @@ var router = express.Router();
 var db = require("../models");
 
 
-router.get("/", function (req, res) {
+router.get("/", function(req, res) {
     db.Listing.findAll({})
-        .then(function (data) {
+        .then(function(data) {
             var hbsObject = { Listing: data }
             res.render("index", hbsObject);
         });
 });
 
-router.get("/login", function (req, res) {
+router.get("/index", function(req, res) {
+    res.render("index.handlebars");
+})
+
+
+router.get("/login", function(req, res) {
     res.render("login.handlebars");
 })
 
-router.get("/sell", function (req, res) {
+router.get("/sell", function(req, res) {
     res.render("sell.handlebars");
 })
 
-router.get("/upload", function (req, res) {
+router.get("/upload", function(req, res) {
     res.render("uploadpic");
 })
 
