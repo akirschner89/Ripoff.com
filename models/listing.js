@@ -20,25 +20,28 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [1]
       }
-    },
-      imageName: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-      validate: {
-        len: [1]
-      }
     }
   });
 
-  Listing.associate = function(models) {
+  Listing.associate = function(db) {
     // We're saying that a Listing should belong to a User
     // A Listing can't be created without a User due to the foreign key constraint
-    Listing.belongsTo(models.User, {
+    Listing.belongsTo(db.User, {
       foreignKey: {
         allowNull: true
       }
     });
   };
 
+  Listing.associate = function(db) {
+    // Associating Author with Posts
+    // When an Author is deleted, also delete any associated Posts
+    Listing.hasMany(db.Images, {
+      onDelete: "cascade"
+    });
+  };
+
   return Listing;
 };
+
+ 

@@ -1,26 +1,25 @@
 // Requiring our models
 var db = require("../models");
 
-var fs = require('fs');  
-var path = require('path');  
-var uid = require('uid2');  
-var mime = require('mime'); 
+var fs = require('fs');
+var path = require('path');
+var uid = require('uid2');
+var mime = require('mime');
+
 // Parse an incoming multipart/form-data request (uploads). Adds the files and files to req.
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
 
-var db = require("../models");
-
-var TARGET_PATH = path.resolve(__dirname, '../imageUploads/');  
-var IMAGE_TYPES = ['image/jpeg', 'image/png']; 
+var TARGET_PATH = path.resolve(__dirname, '../imageUploads/');
+var IMAGE_TYPES = ['image/jpeg', 'image/png'];
 var currentListingId;
 
 // Routes
 // =============================================================
-module.exports = function(app) {
+module.exports = function (app) {
 
   // GET route for getting all of the listing
-  app.get("/api/listing", function(req, res) {
+  app.get("/api/listing", function (req, res) {
     var query = {};
     if (req.query.user_id) {
       query.UserId = req.query.user_id;
@@ -31,13 +30,13 @@ module.exports = function(app) {
     db.Listing.findAll({
       where: query,
       include: [db.User]
-    }).then(function(dbListing) {
+    }).then(function (dbListing) {
       res.json(dbListing);
     });
   });
 
   // Get rotue for retrieving a single Listing
-  app.get("/api/listing/:id", function(req, res) {
+  app.get("/api/listing/:id", function (req, res) {
     // Here we add an "include" property to our options in our findOne query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.User
@@ -46,17 +45,17 @@ module.exports = function(app) {
         id: req.params.id
       },
       include: [db.User]
-    }).then(function(dbListing) {
+    }).then(function (dbListing) {
       res.json(dbListing);
     });
   });
 
   // Listing route for saving a new Listing
-  app.post("/api/listing", function(req, res) {
+  app.post("/api/listing", function (req, res) {
     db.Listing.create({
       title: req.body.title,
       body: req.body.body
-    }).then(function(dbListing) {
+    }).then(function (dbListing) {
       res.render('uploadpic');
       currentListingId = dbListing.get('id');
       console.log("currentListingId = " + currentListingId);
@@ -64,32 +63,32 @@ module.exports = function(app) {
   });
 
   // DELETE route for deleting listing
-  app.delete("/api/listing/:id", function(req, res) {
+  app.delete("/api/listing/:id", function (req, res) {
     db.Listing.destroy({
       where: {
         id: req.params.id
       }
-    }).then(function(dbListing) {
+    }).then(function (dbListing) {
       res.json(dbListing);
     });
   });
 
   // PUT route for updating listing
-  app.put("/api/listing", function(req, res) {
+  app.put("/api/listing", function (req, res) {
     db.Listing.update(
       req.body,
       {
         where: {
           id: req.body.id
         }
-      }).then(function(dbListing) {
+      }).then(function (dbListing) {
         res.json(dbListing);
       });
   });
 
 
 
-  app.post("/upload", multipartMiddleware, function(req, res) {
+  app.post("/upload", multipartMiddleware, function (req, res) {
     var is;
     var os;
     var targetPath;
@@ -121,31 +120,27 @@ module.exports = function(app) {
     is.pipe(os);
 
     //handle error
-    is.on('error', function() {
+    is.on('error', function () {
       if (err) {
         return res.send(500, 'Something went wrong');
       }
     });
 
     //if we are done moving the file
-    is.on('end', function() {
+    is.on('end', function () {
 
       //delete file from temp folder
-      fs.unlink(tempPath, function(err) {
+      fs.unlink(tempPath, function (err) {
         if (err) {
           return res.send(500, 'Something went wrong');
         }
 
       });//#end - unlink
     });//#end - on.end
-    db.Listing.update({
+    db.Images.create({
       imageName: targetName
-    }, {
-      where: {
-        id : currentListingId
-      }                             // add a where condition targeting customerID
-    }).then(function(response) {
-       res.send(response);
+    }).then(function (response) {
+        res.send(response);
     });
   });
 };
