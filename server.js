@@ -63,7 +63,6 @@ app.post('/login',
 // Routing
 require("./routes/user-api-routes.js")(app);
 require("./routes/listing-api-routes.js")(app);
-require("./routes/upload-route.js")(app);
 
 // Routes <> Handlebars
 // =============================================================

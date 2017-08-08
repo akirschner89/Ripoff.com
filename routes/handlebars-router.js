@@ -19,6 +19,9 @@ router.get("/sell", function(req, res) {
     res.render("sell.handlebars");
 })
 
+router.get("/upload", function(req, res) {
+    res.render("uploadpic");
+})
 
 
 
