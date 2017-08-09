@@ -37,7 +37,11 @@ module.exports = function(sequelize, DataTypes) {
     // Associating Author with Posts
     // When an Author is deleted, also delete any associated Posts
     Listing.hasMany(db.Images, {
-      onDelete: "cascade"
+      onDelete: "cascade",
+      foreignKey: { 
+        name: 'listId',
+        allowNull:false
+      }
     });
   };
 

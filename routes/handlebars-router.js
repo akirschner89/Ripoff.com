@@ -3,10 +3,21 @@ var router = express.Router();
 var db = require("../models");
 
 
+<<<<<<< Updated upstream
 router.get("/", function(req, res) {
     db.Listing.findAll({})
         .then(function(data) {
             var hbsObject = { Listing: data }
+=======
+router.get("/", function (req, res) {
+    db.Listing.findAll({
+        include: db.Images
+    })
+        .then(function (data) {
+            // res.send(JSON.stringify(data));
+            // var picName = data[0].dataValues.Images[0].imageName;
+            var hbsObject = { Listings: data }
+>>>>>>> Stashed changes
             res.render("index", hbsObject);
         });
 });

@@ -39,7 +39,7 @@ app.set("view engine", "handlebars");
 
 // Static directory
 app.use(express.static("public"));
-app.use('/images', express.static(__dirname + '/imageUploads'));
+// app.use('/images', express.static(__dirname + '/imageUploads'));
 
 
 

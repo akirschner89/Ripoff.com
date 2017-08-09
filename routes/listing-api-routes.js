@@ -10,7 +10,7 @@ var mime = require('mime');
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
 
-var TARGET_PATH = path.resolve(__dirname, '../imageUploads/');
+var TARGET_PATH = path.resolve(__dirname, '../public/imageUploads/');
 var IMAGE_TYPES = ['image/jpeg', 'image/png'];
 var currentListingId;
 
