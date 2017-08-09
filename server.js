@@ -4,6 +4,8 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
+var passport = require('passport');
+var session = require('express-session');
 
 // Sets up the Express App
 // =============================================================
@@ -21,6 +23,15 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(methodOverride("_method"));
 
 
+// For Passport
+app.use(session({
+    secret: 'keyboard cat',
+    resave: true,
+    saveUninitialized: true
+})); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+
 // Set Handlebars.
 var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -30,45 +41,20 @@ app.set("view engine", "handlebars");
 app.use(express.static("public"));
 app.use('/images', express.static(__dirname + '/imageUploads'));
 
-//testing section for passport-local
-var passport = require('passport'),
-    LocalStrategy = require('passport-local').Strategy;
-
-passport.use(new LocalStrategy(
-    function (username, password, done) {
-        User.findOne({ username: username }, function (err, user) {
-            if (err) { return done(err); }
-            if (!user) {
-                return done(null, false, { message: 'Incorrect username.' });
-            }
-            if (!user.validPassword(password)) {
-                return done(null, false, { message: 'Incorrect password.' });
-            }
-            return done(null, user);
-        });
-    }
-));
-
-// POST method for user authentication
-app.post('/login',
-    passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/login',
-        failureFlash: true
-    })
-);
-
 
 
 // Routing
-require("./routes/user-api-routes.js")(app);
+require("./routes/user-api-routes.js")(app, passport);
 require("./routes/listing-api-routes.js")(app);
+require('./routes/auth.js')(app, passport);
 
 // Routes <> Handlebars
 // =============================================================
 var routes = require("./routes/handlebars-router.js");
 app.use("/", routes);
 
+//load passport strategies
+require('./config/passport.js')(passport, db.user);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
