@@ -4,11 +4,13 @@
   "description": "Full stack app for posting your used goods",
   "main": "server.js",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
     "connect-multiparty": "^2.0.0",
     "dropzone": "^5.1.1",
     "express": "^4.15.3",
     "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.5",
     "method-override": "^2.3.9",
     "mime": "^1.3.6",
     "mysql": "^2.14.1",
