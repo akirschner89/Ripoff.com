@@ -3,12 +3,14 @@
     <h1>{{pic}}</h1>
     {{#each Listings }} 
        <div class="col-sm-4" id="{{this.id}}"> 
-                <div class="panel panel-primary listingItem">
+                <div class="panel panel-inverse listingItem">
                     <div class="panel-heading text-center">{{this.title}}</div>
-                        <div class="panel-body listingImage text-center" style='background:url(/imageUploads/{{this.Images.[0].imageName}})'>
-                        </div>
+                    <div class="panel-body listingImage text-center" style='background:url(/imageUploads/{{this.Images.[0].imageName}}); background-size: cover;center top '> </div>
+                        <div class="panel-footer text-center">$ 99.99{{this.price}}</div>
                 </div>
-            </div>
+                       
+        </div>
+    
     {{/each}}
 </div>
 
