@@ -20,12 +20,6 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [1]
       }
-    },
-    price: {
-      type: DataTypes.FLOAT(10,2),
-      validate: {
-        isDecimal: true 
-      }
     }
   });
 
