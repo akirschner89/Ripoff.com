@@ -19,21 +19,21 @@ var currentListingId;
 module.exports = function (app) {
 
   // GET route for getting all of the listing
-  app.get("/api/listing", function (req, res) {
-    var query = {};
-    if (req.query.user_id) {
-      query.UserId = req.query.user_id;
-    }
-    // Here we add an "include" property to our options in our findAll query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.User
-    db.Listing.findAll({
-      where: query,
-      include: [db.User]
-    }).then(function (dbListing) {
-      res.json(dbListing);
-    });
-  });
+  // app.get("/api/listing", function (req, res) {
+  //   var query = {};
+  //   if (req.query.user_id) {
+  //     query.UserId = req.query.user_id;
+  //   }
+  //   // Here we add an "include" property to our options in our findAll query
+  //   // We set the value to an array of the models we want to include in a left outer join
+  //   // In this case, just db.User
+  //   db.Listing.findAll({
+  //     where: query,
+  //     include: [db.User]
+  //   }).then(function (dbListing) {
+  //     res.json(dbListing);
+  //   });
+  // });
 
   // Get rotue for retrieving a single Listing
   app.get("/api/listing/:id", function (req, res) {
@@ -44,9 +44,10 @@ module.exports = function (app) {
       where: {
         id: req.params.id
       },
-      include: [db.User]
-    }).then(function (dbListing) {
-      res.json(dbListing);
+      include: [db.Images]
+    }).then(function(dbListing) {
+      var singleListing = {Listing: dbListing};
+      res.render("singleListing", singleListing);
     });
   });
 

@@ -1,0 +1,14 @@
+
+<div class="container">
+      <div class="text-center">
+        <h2>{{Listing.title}}</h2>
+        <h3>{{Listing.price}}</h3>
+      </div>
+      <div class="text-center">
+        <h6>{{Listing.body}}</h6>
+      </div>  
+      {{#each Listing.Images}}
+        <div class="" style='background:url(/imageUploads/{{this.imageName}}); background-size: cover;center center; width: 200px; height: 200px'></div>
+      {{/each}}
+</div>
+
