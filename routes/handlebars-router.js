@@ -2,16 +2,16 @@ var express = require("express");
 var router = express.Router();
 var db = require("../models");
 
-router.get("/", function (req, res) {
+router.get("/", function(req, res) {
     db.Listing.findAll({
-        include: db.Images
-    })
-    .then(function (data) {
-        // res.send(JSON.stringify(data));
-        // var picName = data[0].dataValues.Images[0].imageName;
-        var hbsObject = { Listings: data }
-        res.render("index", hbsObject);
-    });
+            include: db.Images
+        })
+        .then(function(data) {
+            // res.send(JSON.stringify(data));
+            // var picName = data[0].dataValues.Images[0].imageName;
+            var hbsObject = { Listings: data }
+            res.render("index", hbsObject);
+        });
 });
 
 router.get("/index", function(req, res) {
@@ -28,6 +28,10 @@ router.get("/sell", function(req, res) {
 
 router.get("/upload", function(req, res) {
     res.render("uploadpic");
+})
+
+router.get("/create", function(req, res) {
+    res.render("create.handlebars");
 })
 
 module.exports = router;
