@@ -1,14 +1,24 @@
 
+{{!-- Un-comment href/mailto once the User Model has been updated with an Email address colum --}}
+
 <div class="container">
       <div class="text-center">
         <h2>{{Listing.title}}</h2>
         <h3>{{Listing.price}}</h3>
+        <h5>{{Listing.body}}</h5>
+        <br>
+        <button type="button" class="" {{!-- href="mailto:{{this.email}}?Subject=Swindler's List: Question about item: {{this,title}}" --}}>Contact Seller</button>
       </div>
-      <div class="text-center">
-        <h6>{{Listing.body}}</h6>
-      </div>  
-      {{#each Listing.Images}}
-        <div class="" style='background:url(/imageUploads/{{this.imageName}}); background-size: cover;center center; width: 200px; height: 200px'></div>
-      {{/each}}
+      <div class="rslides_container">
+        <ul class="rslides"> 
+        {{#each Listing.Images}}
+          <li class="rslides"><img src="/imageUploads/{{this.imageName}}" alt=""></li>
+        {{/each}}
+        </ul>
+      </div>
 </div>
+
+
+
+
 

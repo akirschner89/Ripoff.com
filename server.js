@@ -15,13 +15,11 @@ var PORT = process.env.PORT || 8080;
 // Requiring our models for syncing
 var db = require("./models");
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(methodOverride("_method"));
-
 
 // For Passport
 app.use(session({
@@ -31,6 +29,8 @@ app.use(session({
 })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
+//load passport strategies
+require('./config/passport.js')(passport, db.user);
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");
@@ -41,8 +41,6 @@ app.set("view engine", "handlebars");
 app.use(express.static("public"));
 // app.use('/images', express.static(__dirname + '/imageUploads'));
 
-
-
 // Routing
 require("./routes/user-api-routes.js")(app, passport);
 require("./routes/listing-api-routes.js")(app);
@@ -52,9 +50,6 @@ require('./routes/auth.js')(app, passport);
 // =============================================================
 var routes = require("./routes/handlebars-router.js");
 app.use("/", routes);
-
-//load passport strategies
-require('./config/passport.js')(passport, db.user);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================

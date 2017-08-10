@@ -7,6 +7,9 @@
     <link rel="stylesheet" type="text/css" href="/css/dropzone.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {{!-- Image Slider --}}
+    <script src="/js/responsiveslides.min.js"></script>
+    {{!-- Dropzone --}}
     <script src="/js/dropzone.js"></script>
     <script src="/js/app.js"></script>
 </head>
@@ -51,22 +54,6 @@
             <input type="email" class="form-control" size="50" placeholder="Email Address">
             <button type="button" class="btn btn-danger">Sign Up</button>
         </form>
-    </footer>
-	<script>
-    Dropzone.autoDiscover = false;
-    $( document ).ready(function() {
-        $(document).on("click", "#dropzoneButton", function() {
-            $('#dropzoneButton').remove();
-            $("#dropzoneID").addClass("dropzone").dropzone({
-                url: "/upload",
-                maxFilesize: 6,
-                maxFiles: 10,
-                capture: "camera",
-                addRemoveLinks: true,
-                dictDefaultMessage: "DROP FILES TO BE UPLOADED HERE"
-            });
-        });
-    });
-    </script>	
+    </footer>	
 </body>
 </html>
