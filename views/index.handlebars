@@ -1,14 +1,56 @@
+<nav>
+    <div class="nav-wrapper">
+        <a src="" class="brand-logo"></a>
+        <ul class="right hide-on-med-and-down">
+            <li class="active"><a href="/index">Home</a></li>
+            <!-- <li><a href="#">What's Available</a></li> -->
+            <!-- <li><a href="buy.html">Buy</a></li> -->
+            <li><a href="/sell">Sell</a></li>
+            <!-- <li><a href="#">Contact</a></li> -->
+            <!-- Dropdown Trigger -->
+            <li><a class="dropdown-button" href="/login" data-activates="dropdown1">Log in<i class="material-icons right"></i></a></li>
+        </ul>
+    </div>
+</nav>
 
 <div class="container">
     <h1>{{pic}}</h1>
-    {{#each Listings }} 
-       <div class="col-xs-8 col-xs-offset-2 col-sm-offset-0 col-sm-6 col-md-4"> 
-                <div class="panel panel-inverse listingItem" id="{{this.id}}">
-                    <div class="panel-heading text-center">{{this.title}}</div>
-                    <div class="panel-body listingImage text-center" style='background:url(/imageUploads/{{this.Images.[0].imageName}}); background-size: cover;center center '> </div>
-                    <div class="panel-footer text-center">$ 99.99{{this.price}}</div>
-                </div>       
+    {{#each Listings }}
+    <div class="col-sm-4" id="{{this.id}}">
+        <div class="panel panel-inverse listingItem">
+            <div class="panel-heading text-center">{{this.title}}</div>
+            <div class="panel-body listingImage text-center" style='background:url(/imageUploads/{{this.Images.[0].imageName}}); background-size: cover;center top '>
+            </div>
+            <div class="panel-footer text-center">${{this.price}}</div>
+            <div class="panel-footer text-center">{{this.category}}</div>
         </div>
+
+    </div>
+
     {{/each}}
 </div>
 
+<footer class="page-footer grey darken-4">
+    <div class="container">
+        <div class="row">
+
+
+            <div class="col s12">
+                <h5 class="white-text">Meet the Developers</h5>
+                <ul>
+                    <li><a class="white-text" href="#!">Adam Kirschner</a></li>
+                    <li><a class="white-text" href="#!">Jake Lopez</a></li>
+                    <li><a class="white-text" href="#!">Brian Hummel</a></li>
+                    <li><a class="white-text" href="#!">Noe Tellez</a></li>
+                    <li><a class="white-text" href="#!">Stephen Bell</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            <h6> RipOff Copyright 2017 </h6>
+        </div>
+    </div>
+</footer>
