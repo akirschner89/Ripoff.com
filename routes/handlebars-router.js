@@ -14,6 +14,18 @@ router.get("/", function(req, res) {
         });
 });
 
+//for creating a new user after they enter credentials
+router.post("/login", function(req, res) {
+  db.user.create({
+      name: req.body.username,
+      password: req.body.password,
+      email: req.body.email
+    })
+    .then(function() {
+      res.render("/index");
+    });
+});
+
 router.get("/index", function(req, res) {
     res.render("index.handlebars");
 })

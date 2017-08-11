@@ -18,22 +18,30 @@ var currentListingId;
 // =============================================================
 module.exports = function (app) {
 
-  // GET route for getting all of the listing
-  // app.get("/api/listing", function (req, res) {
-  //   var query = {};
-  //   if (req.query.user_id) {
-  //     query.UserId = req.query.user_id;
-  //   }
-  //   // Here we add an "include" property to our options in our findAll query
-  //   // We set the value to an array of the models we want to include in a left outer join
-  //   // In this case, just db.User
-  //   db.Listing.findAll({
-  //     where: query,
-  //     include: [db.User]
-  //   }).then(function (dbListing) {
-  //     res.json(dbListing);
-  //   });
-  // });
+//GET route for all listings by every user
+app.get("/api/listing", function (req, res) {
+    db.Listing.findAll({
+    }).then(function (dbListing) {
+      res.json(dbListing);
+    });
+  });
+
+  // GET route for getting all of the listing BY A SPECIFIC USER
+  app.get("/api/listing", function (req, res) {
+    var query = {};
+    if (req.query.user_id) {
+      query.UserId = req.query.user_id;
+    }
+    // Here we add an "include" property to our options in our findAll query
+    // We set the value to an array of the models we want to include in a left outer join
+    // In this case, just db.User
+    db.Listing.findAll({
+      where: query,
+      include: [db.User]
+    }).then(function (dbListing) {
+      res.json(dbListing);
+    });
+  });
 
   // Get route for retrieving a single Listing
   app.get("/api/listing/:id", function (req, res) {
@@ -52,7 +60,9 @@ module.exports = function (app) {
   app.post("/api/listing", function (req, res) {
     db.Listing.create({
       title: req.body.title,
-      body: req.body.body
+      body: req.body.body,
+      price: req.body.price,
+      category: req.body.category
     }).then(function (dbListing) {
       res.render('uploadpic');
       currentListingId = dbListing.get('id');
@@ -127,7 +137,7 @@ module.exports = function (app) {
     });
   });
 
-  // PUT route for updating listing
+  // PUT route for updating body (description) for a listing
   app.put("/api/listing", function (req, res) {
     db.Listing.update(
       req.body,

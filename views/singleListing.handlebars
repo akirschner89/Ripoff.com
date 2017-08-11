@@ -4,10 +4,10 @@
 <div class="container">
       <div class="text-center">
         <h2>{{Listing.title}}</h2>
-        <h3>{{Listing.price}}</h3>
+        <h3>${{Listing.price}}</h3>
         <h5>{{Listing.body}}</h5>
         <br>
-        <button type="button" class="" {{!-- href="mailto:{{this.email}}?Subject=Swindler's List: Question about item: {{this,title}}" --}}>Contact Seller</button>
+        <button type="button" class=""  href="mailto:{{this.email}}?Subject=Swindler's List: Question about item: {{this.title}}" >Contact Seller</button>
       </div>
       <div class="rslides_container">
         <ul class="rslides"> 

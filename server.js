@@ -29,8 +29,7 @@ app.use(session({
 })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
-//load passport strategies
-require('./config/passport.js')(passport, db.user);
+
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");
@@ -51,9 +50,12 @@ require('./routes/auth.js')(app, passport);
 var routes = require("./routes/handlebars-router.js");
 app.use("/", routes);
 
+//load passport strategies
+require('./config/passport.js')(passport, db.user);
+
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({  }).then(function () {
+db.sequelize.sync({ force: true }).then(function () {
     app.listen(PORT, function () {
         console.log("App listening on PORT " + PORT);
     });
