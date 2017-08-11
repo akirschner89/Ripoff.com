@@ -22,7 +22,7 @@ router.post("/login", function(req, res) {
       email: req.body.email
     })
     .then(function() {
-      res.render("/index");
+      res.render("/");
     });
 });
 

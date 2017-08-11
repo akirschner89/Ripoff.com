@@ -458,3 +458,7 @@ body {
 #contact-button {
     color: white;
 }
+
+.btn-primary {
+    margin-bottom: 1%;
+}
