@@ -44,6 +44,14 @@ footer {
     margin-top: 100px;
 }
 
+nav {
+    margin-top: 40px;
+}
+
+.mainListings {
+    margin-top: 70px;
+}
+
 .listingImage {
     height: 250px;
 }
@@ -69,6 +77,10 @@ footer {
     -moz-transform: scale(1.05);
     transition: all 200ms ease-in;
     transform: scale(1.05);
+}
+
+.listingItem > * {
+    margin: 10px 0;
 }
 
 .panel-footer {
@@ -197,16 +209,6 @@ body {
 }
 
 
-/*Materialize styling */
-
-.parallax-container {
-    height: 205px;
-}
-
-#logo {
-    height: 250px;
-    width: 250px;
-}
 
 @font-face {
     font-family: 'Muli', sans-serif;
@@ -416,6 +418,27 @@ body {
 #logo {
     height: 250px;
     width: 250px;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1);
+    transition: all 200ms ease-in;
+    transform: scale(1);
+}
+
+
+#logo:hover {
+    z-index: 2;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1.05);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1.05);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1.05);
+    transition: all 200ms ease-in;
+    transform: scale(1.05);
 }
 
 .nav-wrapper {
