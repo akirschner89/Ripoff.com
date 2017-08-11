@@ -62,7 +62,8 @@ app.get("/api/listing", function (req, res) {
       title: req.body.title,
       body: req.body.body,
       price: req.body.price,
-      category: req.body.category
+      category: req.body.category,
+      contact_email: req.body.contact_email
     }).then(function (dbListing) {
       res.render('uploadpic');
       currentListingId = dbListing.get('id');

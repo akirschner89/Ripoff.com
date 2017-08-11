@@ -27,7 +27,15 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [1]
       }
-    }
+    },
+      contact_email: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      validate: {
+        len: [1]
+      }
+   }
+    
   });
 
   Listing.associate = function(db) {
