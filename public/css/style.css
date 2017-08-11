@@ -1,10 +1,10 @@
 @font-face {
-    font-family: 'GatsbyFLF-Bold';
-    src: url(../fonts/GatsbyFLF-Bold.ttf);
+    font-family: 'Muli', sans-serif;
+    /* src: url(../fonts/GatsbyFLF-Bold.ttf); */
 }
 
 .dz-message {
-    font-family: 'GatsbyFLF-Bold';
+    font-family: 'Muli', sans-serif;
     font-size: 30px;
     letter-spacing: 3px;
     text-indent: 1.5px;
@@ -79,7 +79,7 @@ nav {
     transform: scale(1.05);
 }
 
-.listingItem > * {
+.listingItem>* {
     margin: 10px 0;
 }
 
@@ -207,8 +207,6 @@ nav {
 body {
     text-align: center;
 }
-
-
 
 @font-face {
     font-family: 'Muli', sans-serif;
@@ -428,7 +426,6 @@ body {
     transform: scale(1);
 }
 
-
 #logo:hover {
     z-index: 2;
     -webkit-transition: all 200ms ease-in;
@@ -452,4 +449,8 @@ body {
 .container .row {
     margin-left: 1.25rem;
     margin-right: 1.25rem;
+}
+
+#listing-text {
+    font-family: "Muli", sans-serif;
 }
