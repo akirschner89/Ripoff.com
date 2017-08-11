@@ -454,3 +454,7 @@ body {
 #listing-text {
     font-family: "Muli", sans-serif;
 }
+
+#contact-button {
+    color: white;
+}
