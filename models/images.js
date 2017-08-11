@@ -11,6 +11,7 @@ module.exports = function(sequelize, DataTypes) {
 
   Images.associate = function(db) {
     Images.belongsTo(db.Listing, {
+      onDelete: "cascade",
       foreignKey: { 
         name: 'listId',
         allowNull:false

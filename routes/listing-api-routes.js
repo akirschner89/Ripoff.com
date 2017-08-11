@@ -128,13 +128,13 @@ app.get("/api/listing", function (req, res) {
   });
 
   // DELETE route for deleting listing
-  app.delete("/api/listing/:id", function (req, res) {
+  app.post("/api/listing/:id/DELETE", function (req, res) {
     db.Listing.destroy({
       where: {
         id: req.params.id
       }
     }).then(function (dbListing) {
-      res.json(dbListing);
+      res.redirect("/");
     });
   });
 
