@@ -9,7 +9,7 @@ module.exports = function(app, passport) {
     app.get('/login', authController.login);
  
      app.post('/login', passport.authenticate('local-login', {
-            successRedirect: '/index',
+            successRedirect: '/',
  
             failureRedirect: '/login'
         }
@@ -32,7 +32,7 @@ module.exports = function(app, passport) {
  
             return next();
  
-        res.redirect('/index');
+        res.redirect('/');
  
     }
  
