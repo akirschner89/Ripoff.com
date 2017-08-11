@@ -127,8 +127,8 @@ app.get("/api/listing", function (req, res) {
     });
   });
 
-  // DELETE route for deleting listing
-  app.post("/api/listing/:id/DELETE", function (req, res) {
+  // post route for deleting listing
+  app.post("/api/listing/:id/delete", function (req, res) {
     db.Listing.destroy({
       where: {
         id: req.params.id
@@ -138,16 +138,16 @@ app.get("/api/listing", function (req, res) {
     });
   });
 
-  // PUT route for updating body (description) for a listing
-  app.put("/api/listing", function (req, res) {
+  // post route for updating body (description) for a listing
+  app.post("/api/listing/:id/update", function (req, res) {
     db.Listing.update(
       req.body,
       {
         where: {
-          id: req.body.id
+          id: req.params.id
         }
       }).then(function (dbListing) {
-        res.json(dbListing);
+        res.redirect("/api/listing/" + req.params.id);
       });
   });
 };

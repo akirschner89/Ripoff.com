@@ -25,8 +25,9 @@
                 </div>
                 <form action="/api/listing/{{this.id}}/delete" method="POST" role="form">
                     <button type="submit" class="btn btn-primary">Delete Listing</button>
-                </form>            
-            </div>
+                </form>  
+                    <a href="/listing/{{this.id}}/Update" class="btn btn-primary">Update Listing</a>      
+            </div> 
         {{/each}}
     </div>
 </div>

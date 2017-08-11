@@ -45,5 +45,16 @@ router.get("/upload", function(req, res) {
 router.get("/create", function(req, res) {
     res.render("create.handlebars");
 })
+router.get("/listing/:id/update", function(req, res) {
+  db.Listing.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [db.Images]
+    }).then(function(dbListing) {
+      var singleListing = {Listing: dbListing};
+      res.render("updateListing.handlebars", singleListing);
+    });
+})
 
 module.exports = router;
