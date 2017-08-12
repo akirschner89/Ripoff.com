@@ -2,35 +2,35 @@ module.exports = function(sequelize, DataTypes) {
   var Listing = sequelize.define("Listing", {
     title: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
       validate: {
         len: [1]
       }
     },
     body: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: false,
       validate: {
         len: [1]
       }
     },
     price: {
       type: DataTypes.DECIMAL (10,2),
-      allowNull: true,
+      allowNull: false,
       validate: {
         len: [1]
       }
     },
     category: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: false,
       validate: {
         len: [1]
       }
     },
       contact_email: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: false,
       validate: {
         len: [1]
       }
