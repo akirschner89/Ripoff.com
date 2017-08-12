@@ -441,7 +441,7 @@ body {
 #gif {
     text-align: center;
     height: auto;
-    width: 110%;
+    width: 100%;
     box-sizing: inherit;
     -webkit-transition: all 200ms ease-in;
     -webkit-transform: scale(1);
