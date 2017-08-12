@@ -16,20 +16,20 @@
 <div class="container mainListings">
     <div class="row">
         {{#each Listings }}
-            <div class="col s12 m4" >
-                <div class="panel panel-inverse listingItem" id="{{this.id}}">
-                    <div class="panel-heading text-center">{{this.title}}</div>
-                    <div class="panel-body listingImage text-center" style='background:url(/imageUploads/{{this.Images.[0].imageName}}); background-size: cover;center top'></div>
-                    <div class="panel-footer text-center">${{this.price}}</div>
-                    <div class="panel-footer text-center">{{this.category}}</div>
-                </div>
-                <form action="/api/listing/{{this.id}}/delete" method="POST" role="form">
-                    <button type="submit" class="btn btn-primary">Delete Listing</button>
-                </form>  
-                <div>
-                    <a href="/listing/{{this.id}}/Update" class="btn btn-primary">Update Listing</a>      
-                </div>
-            </div> 
+        <div class="col s12 m4">
+            <div class="panel panel-inverse listingItem" id="{{this.id}}">
+                <div class="panel-heading text-center">{{this.title}}</div>
+                <div class="panel-body listingImage text-center" style='background:url(/imageUploads/{{this.Images.[0].imageName}}); background-size: cover;center top'></div>
+                <div class="panel-footer text-center">${{this.price}}</div>
+                <div class="panel-footer text-center">{{this.category}}</div>
+            </div>
+            <form action="/api/listing/{{this.id}}/delete" method="POST" role="form">
+                <button type="submit" class="btn btn-primary">Delete Listing</button>
+            </form>
+            <div>
+                <a href="/listing/{{this.id}}/Update" class="btn btn-primary">Update Listing</a>
+            </div>
+        </div>
         {{/each}}
     </div>
 </div>
@@ -42,11 +42,15 @@
             <div class="col s12">
                 <h5 class="white-text">Meet the Developers</h5>
                 <ul>
-                    <li><a class="white-text" href="#!">Adam Kirschner</a></li>
-                    <li><a class="white-text" href="#!">Jake Lopez</a></li>
-                    <li><a class="white-text" href="#!">Brian Hummel</a></li>
-                    <li><a class="white-text" href="#!">Noe Tellez</a></li>
-                    <li><a class="white-text" href="#!">Stephen Bell</a></li>
+                    <li><a class="white-text" href="https://github.com/akirschner89" target="_blank">Adam Kirschner</a></li>
+                    <br>
+                    <li><a class="white-text" href="https://github.com/JakeLopez" target="_blank">Jake Lopez</a></li>
+                    <br>
+                    <li><a class="white-text" href="https://github.com/brianpatrickhummel" target="_blank">Brian Hummel</a></li>
+                    <br>
+                    <li><a class="white-text" href="https://github.com/noetlz10" target="_blank">Noe Tellez</a></li>
+                    <br>
+                    <li><a class="white-text" href="https://github.com/stephenjbell1" target="_blank">Stephen Bell</a></li>
 
                 </ul>
             </div>
