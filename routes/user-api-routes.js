@@ -35,14 +35,6 @@ module.exports = function(app, passport) {
         });
     });
 
-    // POST method for user authentication
-    app.post('/login',
-        passport.authenticate('local-login', {
-            successRedirect: '/',
-            failureRedirect: '/login',
-            failureFlash: true
-        })
-    );
 
     app.delete("/api/user/:id", function(req, res) {
         db.User.destroy({

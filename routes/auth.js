@@ -1,4 +1,5 @@
 var authController = require('../controller/authcontroller.js');
+var flash = require('connect-flash');
  
  
 module.exports = function(app, passport) {

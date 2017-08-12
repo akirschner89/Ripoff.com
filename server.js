@@ -6,6 +6,7 @@ var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var passport = require('passport');
 var session = require('express-session');
+var flash = require('connect-flash');
 
 // Sets up the Express App
 // =============================================================
@@ -38,7 +39,6 @@ app.set("view engine", "handlebars");
 
 // Static directory
 app.use(express.static("public"));
-// app.use('/images', express.static(__dirname + '/imageUploads'));
 
 // Routing
 require("./routes/user-api-routes.js")(app, passport);

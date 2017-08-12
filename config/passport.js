@@ -6,11 +6,10 @@ var User = User;
 var LocalStrategy = require('passport-local').Strategy;
 var express = require("express");
 var app = express();
+var flash = require('connect-flash');
  
  
 module.exports = function(passport, user) {
- 
- 
  
  
     passport.use('local-login', new LocalStrategy(
@@ -25,7 +24,7 @@ module.exports = function(passport, user) {
  
         },
  
- 
+
  
         function(req, username, password, done) {
  
@@ -44,12 +43,13 @@ module.exports = function(passport, user) {
             }).then(function(user) {
                 
                     app.post('/login',
-        passport.authenticate('local', {
-            successRedirect: '/',
-            failureRedirect: '/login',
-            failureFlash: true
-        })
-    );
+                        passport.authenticate('local', {
+                            successRedirect: '/',
+                            successFlash: true,
+                            failureRedirect: '/login',
+                            failureFlash: true
+                        })
+            );
 
                 if (user)
  
@@ -58,6 +58,8 @@ module.exports = function(passport, user) {
                     return done(null, false, {
                         message: 'That username is already taken'
                     });
+
+
  
                 } else
  
