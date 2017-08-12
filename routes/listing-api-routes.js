@@ -11,7 +11,7 @@ var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
 
 var TARGET_PATH = path.resolve(__dirname, '../public/imageUploads/');
-var IMAGE_TYPES = ['image/jpeg', 'image/png'];
+var IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/jpg', 'image/txt', 'image/gif'];
 var currentListingId;
 
 // Routes
@@ -82,7 +82,7 @@ app.get("/api/listing", function (req, res) {
 
         //check to see if we support the file type
         if (IMAGE_TYPES.indexOf(type) == -1) {
-          return res.send(415, 'Supported image formats: jpeg, jpg, jpe, png.');
+          return res.send(415, 'Supported image formats: jpeg, jpg, jpe, png, gif.');
         }
 
         //create a new name for the image
